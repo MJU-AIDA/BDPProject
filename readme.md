@@ -1,4 +1,7 @@
-## 빅데이터프로그래밍 기말 프로젝트
----
-조원 : 이지희, 오정석, 문승현  
-프로젝트 진행 날짜 : 
+-전처리를 위한 konlpy 다운로드, (Centos 위에)
+
+1.	Jvm이 필요하므로, 버전에 맞는 자바 다운로드
+sudo yum install gcc-c++ java-1.8.0-openjdk-devel python3 python3-devel python3-pip make diffutils
+
+2. 	konlpy 다운로드 	
+/bin/python3.6 install konlpy 
