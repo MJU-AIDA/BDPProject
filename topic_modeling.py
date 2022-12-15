@@ -17,6 +17,14 @@ if __name__ =="__main__" :
     print("Hyperparameters: \n K: {} \n vocabsize: {} \n optimizer: {} \n learningdecay: {}".format(k, vocabsize, optimizer, learningdecay ))
     
     
+    # hyperparameters
+    k = 5 # 2, 5, 11, 20, 40
+    vocabsize = 2000
+    optimizer = 'em'
+    learningdecay = 0.51
+    print("Hyperparameters: \n K: {} \n vocabsize: {} \n optimizer: {} \n learningdecay: {}".format(k, vocabsize, optimizer, learningdecay ))
+    
+    
     
     # 스키마 정의
     myManualSchema = StructType([
@@ -98,6 +106,3 @@ if __name__ =="__main__" :
         for word in topic:
             print(word)
         print("*"*25)
-
-
-        
