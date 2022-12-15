@@ -1,74 +1,392 @@
-+-----+-----------------+----------+--------------------+--------------------+
-|index|          news_id| timestamp|               title|             content|
-+-----+-----------------+----------+--------------------+--------------------+
-|    0|2100201.201801012|2018-01-01|여승객 하차요구 무시해 감금 기...|무시 여승객 하차 요구 감금 기...|
-|    1|2100311.201801011|2018-01-01|美 무차별 특허공세...'한국 ...|특허공세 특허 공세 한국 반도체...|
-|    2|2100311.201801011|2018-01-01|"이채원 한국밸류운용 신임 대표...|금리인상 이채원 한국밸류운용 신...|
-|    3|1100901.201801012|2018-01-01|준희양 친아버지 “딸 심하게 때렸다”|준희양 친아버지 고준희 친아버지...|
-|    4|1100901.201801012|2018-01-01|[이하경 칼럼] 보세요. 결국엔...|결국 검사 의사 기득권 학생 시...|
-|    5|1100901.201801011|2018-01-01|[논설위원이 간다] ‘가즈아~’...|가즈아 존버 비트코 체험기 이름...|
-|    6|1100901.201801012|2018-01-01|[전문] 北 김정은 2018년 신년사|김정은 신년사 김정은 북한 노동...|
-|    7|1100901.201801012|2018-01-01|[단독] 광주 아파트서 화재 3...|광주 아파트 사망 화재 긴급체포...|
-|    8|1100901.201801012|2018-01-01|제천 화재 경찰 수사 '제천시청...|제천시청 제천 화재 경찰 수사 ...|
-|    9|1100901.201801012|2018-01-01|[이슈추적] 방화냐? 실화냐? ...|방화 실화 광주 사망 화재 경찰...|
-|   10|1100901.201801011|2018-01-01|3%성장 기대  단기성적 취해 ...|3%성장 단기성적 개혁 지연 6...|
-|   11|1100901.201801012|2018-01-01|마약 투여 혐의로 체포된 저가항...|혐의 마약 투여 체포 저가항공사...|
-|   12|1100901.201801012|2018-01-01|“치료 도와줄게” 친구 딸 상습...|치료 친구 친구 상습 성추행 항...|
-|   13|1100901.201801012|2018-01-01|82년 임술년 검사 생활 시작 ...|시작 임술년 검사 생활 원숭이띠...|
-|   14|1100901.201801011|2018-01-01|[J report] “문제는 배...|배터리 아이폰 혁신 신뢰 배터리...|
-|   15|1100901.201801012|2018-01-01|  성범죄자 취업 최대 10년간 금지|취업 최대 7월 아동 청소년 헌...|
-|   16|1100901.201801012|2018-01-01|아동 납치, 성폭행 동반 살인하...|아동 납치 살인 성폭행 동반 구...|
-|   17|1100901.201801012|2018-01-01|미성년자 납치 강간살해 구형 대...|납치 강간살해 구형 최대 사형 ...|
-|   18|2100311.201801011|2018-01-01|새해에도 법원 檢 행보 살피는 기업들|새해 법원 행보 기업들 이건희 ...|
-|   19|8100201.201801011|2018-01-01|광주 3남매 사망 화재사건 방화...|수사 광주 사망 화재 사건 방화...|
-+-----+-----------------+----------+--------------------+--------------------+
-only showing top 20 rows
-
-Traceback (most recent call last):
-  File "/home/maria_dev/project/BDP_final_project/topic_modeling.py", line 78, in <module>
-    cv_model = cv.fit(vectorized_data)
-  File "/usr/hdp/current/spark2-client/python/lib/pyspark.zip/pyspark/ml/base.py", line 132, in fit
-  File "/usr/hdp/current/spark2-client/python/lib/pyspark.zip/pyspark/ml/wrapper.py", line 288, in _fit
-  File "/usr/hdp/current/spark2-client/python/lib/pyspark.zip/pyspark/ml/wrapper.py", line 285, in _fit_java
-  File "/usr/hdp/current/spark2-client/python/lib/py4j-0.10.7-src.zip/py4j/java_gateway.py", line 1257, in __call__
-  File "/usr/hdp/current/spark2-client/python/lib/pyspark.zip/pyspark/sql/utils.py", line 63, in deco
-  File "/usr/hdp/current/spark2-client/python/lib/py4j-0.10.7-src.zip/py4j/protocol.py", line 328, in get_return_value
-py4j.protocol.Py4JJavaError: An error occurred while calling o214.fit.
-: org.apache.spark.SparkException: Job 7 cancelled because SparkContext was shut down
-	at org.apache.spark.scheduler.DAGScheduler$$anonfun$cleanUpAfterSchedulerStop$1.apply(DAGScheduler.scala:837)
-	at org.apache.spark.scheduler.DAGScheduler$$anonfun$cleanUpAfterSchedulerStop$1.apply(DAGScheduler.scala:835)
-	at scala.collection.mutable.HashSet.foreach(HashSet.scala:78)
-	at org.apache.spark.scheduler.DAGScheduler.cleanUpAfterSchedulerStop(DAGScheduler.scala:835)
-	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onStop(DAGScheduler.scala:1848)
-	at org.apache.spark.util.EventLoop.stop(EventLoop.scala:83)
-	at org.apache.spark.scheduler.DAGScheduler.stop(DAGScheduler.scala:1761)
-	at org.apache.spark.SparkContext$$anonfun$stop$8.apply$mcV$sp(SparkContext.scala:1931)
-	at org.apache.spark.util.Utils$.tryLogNonFatalError(Utils.scala:1361)
-	at org.apache.spark.SparkContext.stop(SparkContext.scala:1930)
-	at org.apache.spark.scheduler.cluster.YarnClientSchedulerBackend$MonitorThread.run(YarnClientSchedulerBackend.scala:112)
-	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:642)
-	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2034)
-	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2131)
-	at org.apache.spark.rdd.RDD$$anonfun$fold$1.apply(RDD.scala:1092)
-	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
-	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
-	at org.apache.spark.rdd.RDD.withScope(RDD.scala:363)
-	at org.apache.spark.rdd.RDD.fold(RDD.scala:1086)
-	at org.apache.spark.mllib.clustering.EMLDAOptimizer.computeGlobalTopicTotals(LDAOptimizer.scala:230)
-	at org.apache.spark.mllib.clustering.EMLDAOptimizer.next(LDAOptimizer.scala:217)
-	at org.apache.spark.mllib.clustering.EMLDAOptimizer.next(LDAOptimizer.scala:81)
-	at org.apache.spark.mllib.clustering.LDA.run(LDA.scala:336)
-	at org.apache.spark.ml.clustering.LDA.fit(LDA.scala:912)
-	at org.apache.spark.ml.clustering.LDA.fit(LDA.scala:814)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
-	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
-	at py4j.Gateway.invoke(Gateway.java:282)
-	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
-	at py4j.commands.CallCommand.execute(CallCommand.java:79)
-	at py4j.GatewayConnection.run(GatewayConnection.java:238)
-	at java.lang.Thread.run(Thread.java:748)
-
+The lower bound on the log likelihood of the entire corpus: -24810992.262142714
+The upper bound on perplexity: 7.395568736246098
+topic: 0
+*************************
+대통령
+의원
+경찰
+검찰
+교수
+정부
+여성
+생각
+미국
+폭행
+*************************
+topic: 1
+*************************
+논리
+대통령
+사회적
+베트남
+회장
+검찰
+여성
+경찰
+중국
+미국
+*************************
+topic: 2
+*************************
+대통령
+검찰
+지사
+경찰
+의원
+회장
+a씨
+수사
+혐의
+폭행
+*************************
+topic: 3
+*************************
+대통령
+검찰
+경찰
+공정위
+회장
+의원
+폭행
+기업
+정부
+혐의
+*************************
+topic: 4
+*************************
+교수
+대통령
+경찰
+의원
+회담
+검찰
+피해자
+a씨
+회장
+폭행
+*************************
+topic: 5
+*************************
+게임
+노출
+도전
+현안
+경찰
+대통령
+검찰
+11월
+회장
+중국
+*************************
+topic: 6
+*************************
+대통령
+교수
+수도권
+경찰
+의원
+회장
+검찰
+폭행
+남자
+얘기
+*************************
+topic: 7
+*************************
+대통령
+회장
+연금
+대출
+검찰
+선고
+경찰
+미국
+의원
+부회장
+*************************
+topic: 8
+*************************
+대통령
+경찰
+회장
+검찰
+교수
+폭행
+중국
+a씨
+혐의
+수사
+*************************
+topic: 9
+*************************
+대통령
+뮤지컬
+검찰
+경찰
+수사
+혐의
+교수
+a씨
+여성
+사건
+*************************
+topic: 10
+*************************
+대통령
+대마초
+검찰
+회장
+경찰
+혐의
+선고
+수사
+의원
+조사
+*************************
+topic: 11
+*************************
+대통령
+검찰
+경찰
+회장
+기업
+정부
+미국
+시장
+상대방
+중국
+*************************
+topic: 12
+*************************
+금감원
+사우디
+대통령
+지연
+탄핵
+미국
+경찰
+집중적
+콘텐츠
+근로
+*************************
+topic: 13
+*************************
+사우디
+대통령
+필로폰
+경찰
+전후
+검찰
+여성
+피해자
+사건
+영화
+*************************
+topic: 14
+*************************
+사우디
+대통령
+이란
+미국
+트럼프
+경찰
+의원
+정부
+검찰
+여성
+*************************
+topic: 15
+*************************
+대통령
+경찰
+검찰
+의원
+회장
+수사
+혐의
+폭행
+시장
+조사
+*************************
+topic: 16
+*************************
+대통령
+검찰
+지사
+경찰
+의원
+수사
+검사
+회장
+혐의
+공정위
+*************************
+topic: 17
+*************************
+소송비
+bmw
+회장
+경찰
+대통령
+검찰
+마이크로닷
+선고
+혐의
+피해자
+*************************
+topic: 18
+*************************
+인용
+교수
+대통령
+추궁
+미국
+중국
+트럼프
+후보
+탄핵
+정부
+*************************
+topic: 19
+*************************
+기무사
+경찰
+대통령
+지사
+검찰
+회장
+수사
+a씨
+혐의
+조사
+*************************
+topic: 20
+*************************
+대통령
+경찰
+검찰
+bmw
+a씨
+폭행
+혐의
+사건
+피해자
+수사
+*************************
+topic: 21
+*************************
+대통령
+검찰
+회장
+경찰
+수사
+혐의
+선고
+지사
+의원
+최악
+*************************
+topic: 22
+*************************
+대통령
+지방
+미국
+화폐
+중국
+사우디
+검찰
+회장
+투자
+경찰
+*************************
+topic: 23
+*************************
+화폐
+거래소
+지방
+장애
+오피스텔
+6월
+상반기
+거래
+규제
+대통령
+*************************
+topic: 24
+*************************
+대통령
+마이크로닷
+경찰
+검찰
+교수
+의원
+정부
+혐의
+수사
+앵커
+*************************
+topic: 25
+*************************
+대통령
+검찰
+경찰
+회장
+수사
+앵커
+인터뷰
+정부
+얘기
+아파트
+*************************
+topic: 26
+*************************
+대통령
+의원
+경찰
+교수
+사업자
+검찰
+수사
+생각
+앵커
+조사
+*************************
+topic: 27
+*************************
+탈세
+대통령
+중국
+지방
+거래소
+경찰
+화폐
+미국
+정부
+회장
+*************************
+topic: 28
+*************************
+가짜
+의원
+대통령
+검찰
+지사
+남자
+경찰
+정부
+민주당
+특검
+*************************
+topic: 29
+*************************
+납치
+대통령
+중국
+경찰
+미국
+동물
+검찰
+정부
+의원
+생각
+*************************
