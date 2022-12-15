@@ -1,0 +1,34 @@
+Hyperparameters: 
+ K: 2 
+ vocabsize: 2000 
+ optimizer: em 
+ learningdecay: 0.51
+The lower bound on the loglikelihood of the validation corpus(set): -9364686.609139139
+The upper bound on perplexity: 7.4283628291954935
+
+topic: 0
+*************************
+제한
+a씨
+코로나19
+시장
+미국
+사람
+의원
+국민
+지원
+계획
+*************************
+topic: 1
+*************************
+미국
+의원
+시장
+요청
+투자
+총장
+자신
+이날
+주장
+기록
+*************************

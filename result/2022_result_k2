@@ -1,0 +1,34 @@
+Hyperparameters: 
+ K: 2 
+ vocabsize: 2000 
+ optimizer: em 
+ learningdecay: 0.51
+The lower bound on the loglikelihood of the entire corpus: -7395235.860433709
+The upper bound on perplexity: 7.432802601518042
+
+topic: 0
+*************************
+기소
+a씨
+대표
+피해
+설명
+선고
+의원
+발생
+이날
+재판
+*************************
+topic: 1
+*************************
+a씨
+진행
+의원
+대표
+재판
+범죄
+상황
+구속
+서울
+주택
+*************************

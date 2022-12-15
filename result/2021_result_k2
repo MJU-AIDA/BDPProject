@@ -1,0 +1,34 @@
+Hyperparameters: 
+ K: 2 
+ vocabsize: 2000 
+ optimizer: em 
+ learningdecay: 0.51
+The lower bound on the loglikelihood of the validation corpus(set): -9477113.80398462
+The upper bound on perplexity: 7.430806105083095
+
+topic: 0
+*************************
+a씨
+범행
+남성
+요구
+여성
+변호사
+상황
+의원
+앵커
+결과
+*************************
+topic: 1
+*************************
+a씨
+사람
+의원
+폭행
+상황
+선고
+주장
+국민
+후보
+변호사
+*************************
