@@ -2,7 +2,7 @@ from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
 from pyspark.ml import Pipeline
 from pyspark.sql.functions import regexp_replace
-from pyspark.sql.types import StructField, StructType, StringType
+from pyspark.sql.types import StructField, StructType, StringType, LongType
 from pyspark.ml.clustering import LDA
 from pyspark.ml.feature import Tokenizer, StopWordsRemover, CountVectorizer, IDF
 from pyspark.ml.tuning import ParamGridBuilder, TrainValidationSplit
@@ -12,7 +12,7 @@ if __name__ =="__main__" :
     
     # 스키마 정의
     myManualSchema = StructType([
-        StructField("index", StringType(), True),
+        StructField("index", LongType(), True),
 		StructField("news_id", StringType(), True),
         StructField("timestamp", StringType(), True),
 		StructField("title", StringType(), True),
@@ -25,11 +25,12 @@ if __name__ =="__main__" :
 		format="csv", sep = ",", inferSchema = "true", header = "true")	
     df_news = df_news.filter("content is not null")
     
-    df = df_news.withColumn('content', regexp_replace('content', ',', ' '))
-    
+    df = df_news.withColumn('content', regexp_replace('content', ',', ' ')).where(" index % 10 == 1")
+
+
+
     stopwords_list = []
     
-    df.show()
     
     # train val test split = 6 : 2 : 2
     train_df, test_df = df.randomSplit([0.8, 0.2], seed=42)
@@ -43,7 +44,7 @@ if __name__ =="__main__" :
     # make_stopwords.py에서 생성한 불용어 리스트를 가져와 불용어 사전에 등록
     with open("stopwords.txt", "r") as f:
         k = f.readline()
-    stopwords_list = k.split(",")
+    stopwords_list = k.replace('\'', '').split(",")
 
     # 자연어 전처리를 위한 파이프라인 구축
     tokenizer = Tokenizer(inputCol='content',outputCol='mytokens')
@@ -60,17 +61,16 @@ if __name__ =="__main__" :
     vectorized_data = vec_result.transform(train_df)
 
     # LDA 모델 생성 및 학습
-    lda = LDA(k=5, seed = 1, optimizer = 'em').setMaxIter(10)
+    lda = LDA(k=30, seed = 1, optimizer = 'em').setMaxIter(10)
     
     #####     LDA모델 하이퍼파라미터 바꾸기     #####
     
-    ll = model.logLikelihood(dataset)
-    lp = model.logPerplexity(dataset)
+    model = lda.fit(vectorized_data) # 학습된 lda 모델
+
+    ll = model.logLikelihood(vectorized_data)
+    lp = model.logPerplexity(vectorized_data)
     print("The lower bound on the log likelihood of the entire corpus: " + str(ll))
     print("The upper bound on perplexity: " + str(lp))
-    
-    
-    model = lda.fit(vectorized_data) # 학습된 lda 모델
     
     
     # Word_index화된 단어를  원래 의미를 가지는 단어로 바꾸기 위해 복원 사전 생성
